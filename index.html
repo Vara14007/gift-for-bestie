@@ -81,7 +81,7 @@
       line-height: 1.4;
     }
 
-    /* Input & General Buttons */
+    /* Inputs & Buttons */
     .input-group { margin-bottom: 20px; }
     input[type="password"] {
       width: 100%;
@@ -135,41 +135,42 @@
       position: absolute; transition: all 0.2s ease-out;
     }
 
-    /* Screen 4: Cake Ceremony Styles */
+    /* 3D Realistic Cake Styles */
     .cake-container {
       position: relative;
-      margin: 30px auto;
-      width: 200px;
+      margin: 30px auto 20px;
+      width: 220px;
       height: 180px;
       cursor: pointer;
+      perspective: 1000px;
     }
 
-    /* Candle Styling */
     .candles {
       position: absolute;
-      top: 10px;
+      top: -10px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 20px;
-      z-index: 5;
+      gap: 25px;
+      z-index: 10;
     }
     .candle {
       width: 10px;
-      height: 35px;
-      background: linear-gradient(to bottom, #ffeb3b, #ff9800);
+      height: 40px;
+      background: repeating-linear-gradient(45deg, #ffeb3b, #ffeb3b 5px, #ff9800 5px, #ff9800 10px);
       border-radius: 4px;
       position: relative;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
     }
     .flame {
       width: 12px;
-      height: 18px;
-      background: #ff5722;
+      height: 20px;
+      background: radial-gradient(ellipse at bottom, #ffffff, #ffeb3b 40%, #ff5722 80%);
       border-radius: 50% 50% 20% 20%;
       position: absolute;
-      top: -18px;
+      top: -20px;
       left: -1px;
-      box-shadow: 0 0 10px #ffeb3b, 0 0 20px #ff5722;
+      box-shadow: 0 0 12px #ffeb3b, 0 0 25px #ff5722;
       animation: flicker 0.6s infinite alternate;
     }
     @keyframes flicker {
@@ -178,38 +179,65 @@
     }
     .flame.off { display: none; }
 
-    /* Cake Styling */
-    .cake {
-      width: 180px;
-      height: 110px;
-      background: #f8bbd0;
-      border-radius: 16px 16px 10px 10px;
+    /* 3D Layered Cake */
+    .cake-3d {
+      width: 200px;
+      height: 130px;
       position: absolute;
-      bottom: 10px;
+      bottom: 0;
       left: 10px;
-      box-shadow: 0 8px 0 #e91e63, 0 16px 0 #880e4f;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all 0.5s ease;
-      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .cake-decor {
-      font-size: 2.5rem;
+    .cake-layer {
+      width: 100%;
+      border-radius: 15px;
+      position: absolute;
+      box-shadow: inset 0 -5px 0 rgba(0,0,0,0.15), 0 8px 15px rgba(0,0,0,0.15);
     }
-    .cake.cut-left {
-      transform: translateX(-20px) rotate(-5deg);
+    .layer-top {
+      height: 45px;
+      background: linear-gradient(to right, #ff80ab, #ff4081);
+      top: 25px;
+      z-index: 3;
     }
-    .cake.cut-right {
-      transform: translateX(20px) rotate(5deg);
+    .layer-middle {
+      height: 45px;
+      background: linear-gradient(to right, #f8bbd0, #f48fb1);
+      top: 55px;
+      z-index: 2;
+    }
+    .layer-bottom {
+      height: 50px;
+      background: linear-gradient(to right, #d81b60, #ad1457);
+      top: 85px;
+      z-index: 1;
+    }
+    .cream-drip {
+      position: absolute;
+      top: 25px;
+      width: 100%;
+      height: 15px;
+      background: #ffffff;
+      border-radius: 10px 10px 15px 15px;
+      z-index: 4;
+      opacity: 0.9;
+    }
+
+    /* Slice Separation Animation */
+    .cake-3d.cut-left {
+      transform: translateX(-30px) rotateY(-15deg);
+    }
+    .cake-3d.cut-right {
+      transform: translateX(30px) rotateY(15deg);
     }
 
     /* Knife Overlay */
     .knife {
       position: absolute;
-      top: -20px;
-      right: 10px;
-      font-size: 3rem;
+      top: -30px;
+      right: -10px;
+      font-size: 3.5rem;
       transform: rotate(-45deg);
       transition: all 0.5s ease;
       opacity: 0;
@@ -218,25 +246,25 @@
     }
     .knife.active { opacity: 1; }
     .knife.cutting {
-      top: 60px;
+      top: 40px;
       right: 80px;
-      transform: rotate(10deg);
+      transform: rotate(15deg);
     }
 
     /* Chocolate Rain Particle */
     .choc-particle {
       position: fixed;
-      font-size: 2rem;
+      font-size: 2.2rem;
       z-index: 1000;
       pointer-events: none;
-      animation: chocFall 3s linear forwards;
+      animation: chocFall 3.5s linear forwards;
     }
     @keyframes chocFall {
       0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(110vh) rotate(360deg); opacity: 0.8; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0.9; }
     }
 
-    /* 4 Surprise Options Grid */
+    /* 4 Shuffled Surprise Cards */
     .surprises-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -245,26 +273,61 @@
       display: none;
       animation: fadeIn 1s ease-in;
     }
-    .surprise-box {
-      background: rgba(255, 255, 255, 0.7);
-      border: 2px dashed #ff4081;
-      padding: 15px 10px;
-      border-radius: 16px;
+    .surprise-card {
+      background: linear-gradient(135deg, #ffffff, #fff0f5);
+      border: 2px solid #ff4081;
+      padding: 20px 10px;
+      border-radius: 18px;
       cursor: pointer;
       transition: all 0.3s ease;
+      box-shadow: 0 6px 15px rgba(255, 64, 129, 0.15);
       font-weight: 600;
       color: #d81b60;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
-    .surprise-box:hover {
-      transform: translateY(-50px) scale(1.05);
-      background: #fff;
-      box-shadow: 0 8px 20px rgba(255, 64, 129, 0.3);
+    .surprise-card:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 10px 22px rgba(255, 64, 129, 0.35);
+      background: #ffffff;
     }
-    .surprise-box span {
-      display: block;
-      font-size: 1.8rem;
-      margin-bottom: 5px;
+    .surprise-card .icon {
+      font-size: 2.2rem;
+      margin-bottom: 6px;
+    }
+
+    /* Fullscreen Surprise Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .modal-content {
+      background: #ffffff;
+      padding: 30px 20px;
+      border-radius: 24px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+    }
+    @keyframes popIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #888;
     }
   </style>
 </head>
@@ -306,10 +369,10 @@
     <button class="btn-cake" onclick="goToCakeScreen()">Cut The Cake 🎂✨</button>
   </div>
 
-  <!-- SCREEN 4: Cake Cutting & Chocolates & 4 Surprises -->
+  <!-- SCREEN 4: 3D Cake Cutting & Chocolates & Shuffled Surprises -->
   <div class="card" id="screen4">
     <h1 id="cakeTitle">Blow Candles First! 🌬️</h1>
-    <p class="wish-text" id="cakeInstruction">Candles par click ya button daba kar pehle unhe bujhaayein!</p>
+    <p class="wish-text" id="cakeInstruction">Candles par click karke unhe bujhaayein!</p>
 
     <div class="cake-container" id="cakeContainer" onclick="handleCakeClick()">
       <div class="knife" id="knife">🔪</div>
@@ -318,31 +381,26 @@
         <div class="candle"><div class="flame" id="flame2"></div></div>
         <div class="candle"><div class="flame" id="flame3"></div></div>
       </div>
-      <div class="cake" id="cake">
-        <span class="cake-decor">🍓🎂🍓</span>
+      <div class="cream-drip"></div>
+      <div class="cake-3d" id="cake3d">
+        <div class="cake-layer layer-top"></div>
+        <div class="cake-layer layer-middle"></div>
+        <div class="cake-layer layer-bottom"></div>
       </div>
     </div>
 
     <button class="action-btn" id="blowBtn" onclick="blowCandles()">Blow Candles 🌬️</button>
 
-    <!-- 4 Surprise Options (Cake Cut hone ke baad aayenge) -->
-    <div class="surprises-grid" id="surprisesGrid">
-      <div class="surprise-box" onclick="openSurprise(1)">
-        <span>📜</span>
-        Shayari
-      </div>
-      <div class="surprise-box" onclick="openSurprise(2)">
-        <span>📸</span>
-        Our Photos
-      </div>
-      <div class="surprise-box" onclick="openSurprise(3)">
-        <span>🎫</span>
-        Special Wishes
-      </div>
-      <div class="surprise-box" onclick="openSurprise(4)">
-        <span>🎵</span>
-        Favorite Song
-      </div>
+    <!-- 4 Mystery Surprise Cards (Shuffled each time) -->
+    <div class="surprises-grid" id="surprisesGrid"></div>
+  </div>
+
+  <!-- Fullscreen Modal Popup for Surprises -->
+  <div class="modal" id="surpriseModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle" style="color: #d81b60; font-family: 'Great Vibes', cursive; font-size: 2.5rem;">Surprise! 🎁</h2>
+      <p id="modalBody" style="margin-top: 15px; color: #4a154b; font-size: 1.1rem; line-height: 1.6;"></p>
     </div>
   </div>
 
@@ -366,7 +424,7 @@
       if (e.key === 'Enter') checkPassword();
     });
 
-    // Screen 2: Dodging No Button
+    // Screen 2: Safe Dodging No Button
     const noBtn = document.getElementById('noBtn');
     function resetNoButtonPosition() {
       noBtn.style.position = 'absolute';
@@ -394,7 +452,7 @@
       document.getElementById('screen4').style.display = 'block';
     }
 
-    // Screen 4: Cake Logic
+    // Screen 4: Interactive Cake Logic
     let candlesBlown = false;
     let cakeCut = false;
 
@@ -406,7 +464,7 @@
       document.getElementById('flame3').classList.add('off');
 
       document.getElementById('cakeTitle').innerText = "Now Cut The Cake! 🔪";
-      document.getElementById('cakeInstruction').innerText = "Cake par click karke cut karein!";
+      document.getElementById('cakeInstruction').innerText = "Cake par click karke use cut karein!";
       document.getElementById('blowBtn').style.display = 'none';
       document.getElementById('knife').classList.add('active');
 
@@ -422,43 +480,77 @@
 
       cakeCut = true;
       const knife = document.getElementById('knife');
-      const cake = document.getElementById('cake');
+      const cake3d = document.getElementById('cake3d');
 
       knife.classList.add('cutting');
 
       setTimeout(() => {
-        cake.classList.add('cut-left');
-        document.getElementById('cakeTitle').innerText = "Yummy! Surprise Unlocked! 🍫✨";
-        document.getElementById('cakeInstruction').innerText = "Niche se koi bhi ek surprise box select karo:";
+        cake3d.classList.add('cut-left');
+        document.getElementById('cakeTitle').innerText = "Yummy! Surprises Unlocked! 🍫✨";
+        document.getElementById('cakeInstruction').innerText = "Koi bhi Surprise Card select karke unlock karein:";
         knife.style.display = 'none';
 
-        // Trigger Chocolates Shower & Show Surprises
+        // Trigger Chocolates Rain & Display Shuffled Cards
         startChocolateShower();
-        document.getElementById('surprisesGrid').style.display = 'grid';
+        renderShuffledSurprises();
       }, 500);
     }
 
-    // Chocolate & Dairy Milk Shower
+    // Chocolate & Dairy Milk Rain
     function startChocolateShower() {
       const items = ['🍫', '🍬', '🍩', '🍫', '🎂', '🍭'];
-      for (let i = 0; i < 35; i++) {
+      for (let i = 0; i < 40; i++) {
         setTimeout(() => {
           const el = document.createElement('div');
           el.className = 'choc-particle';
           el.innerText = items[Math.floor(Math.random() * items.length)];
           el.style.left = Math.random() * 90 + 5 + 'vw';
           document.body.appendChild(el);
-          setTimeout(() => el.remove(), 3000);
-        }, i * 100);
+          setTimeout(() => el.remove(), 3500);
+        }, i * 90);
       }
     }
 
-    // Handle 4 Mystery Surprises
-    function openSurprise(num) {
-      if (num === 1) alert("Screen 5 (Shayari) next step me add karenge! 📜");
-      if (num === 2) alert("Screen 6 (Photos) next step me add karenge! 📸");
-      if (num === 3) alert("Screen 7 (Wishes/Coupons) next step me add karenge! 🎫");
-      if (num === 4) alert("Screen 8 (Favorite Song) next step me add karenge! 🎵");
+    // Surprise Data Definition
+    const surprises = [
+      { id: 1, title: "Special Shayari 📜", content: "Phoolo ne amrit ka jam bheja hai,<br>Suraj ne gagan se salam bheja hai,<br>Mubarak ho aapko aapka janamdin,<br>Ye paigam humne dil se bheja hai! ❤️✨" },
+      { id: 2, title: "Our Best Memories 📸", content: "Hamarim saari memories hamesha special rahengi! Tum meri life ki sabse achi dost ho! 💕✨" },
+      { id: 3, title: "Bestie Voucher 🎫", content: "🎉 <b>UNLIMITED HUGS & TREATS VOUCHER</b> 🎉<br><br>Valid for a lifetime! In-person redeem kar sakti ho kabhi bhi! 🍕🍦" },
+      { id: 4, title: "Favorite Musical Song 🎵", content: "🎶 <i>'Yeh Dosti Hum Nahi Todenge...'</i> 🎶<br><br>Hamesha aise hi muskuraate rehna meri Bestie! 💖" }
+    ];
+
+    // Shuffle Array Algorithm
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    function renderShuffledSurprises() {
+      const grid = document.getElementById('surprisesGrid');
+      grid.innerHTML = '';
+      const shuffled = shuffle([...surprises]);
+
+      shuffled.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'surprise-card';
+        card.innerHTML = `
+          <div class="icon">🎁</div>
+          <div>Surprise #${index + 1}</div>
+        `;
+        card.onclick = () => showSurpriseModal(item);
+        grid.appendChild(card);
+      });
+
+      grid.style.display = 'grid';
+    }
+
+    function showSurpriseModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalBody').innerHTML = item.content;
+      document.getElementById('surpriseModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('surpriseModal').style.display = 'none';
     }
   </script>
 </body>
