@@ -40,20 +40,12 @@
       pointer-events: none;
     }
     @keyframes floatUp {
-      0% {
-        transform: translateY(100vh) scale(0);
-        opacity: 0;
-      }
-      50% {
-        opacity: 0.8;
-      }
-      100% {
-        transform: translateY(-10vh) scale(1.2);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
     }
 
-    /* Responsive Glassmorphism Card */
+    /* Card Layout */
     .card {
       background: rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(12px);
@@ -81,18 +73,16 @@
       margin-bottom: 10px;
       text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
     }
-    p.question {
+    p.question, p.wish-text {
       font-size: 1.1rem;
       color: #4a154b;
       margin-bottom: 25px;
-      font-weight: 600;
+      font-weight: 500;
       line-height: 1.4;
     }
 
-    /* Screen 1 Styles */
-    .input-group {
-      margin-bottom: 20px;
-    }
+    /* Input & General Buttons */
+    .input-group { margin-bottom: 20px; }
     input[type="password"] {
       width: 100%;
       padding: 12px 16px;
@@ -103,20 +93,8 @@
       font-size: 1rem;
       text-align: center;
       color: #333;
-      transition: all 0.3s ease;
     }
-    input::placeholder {
-      color: #666;
-      font-size: 0.8rem;
-    }
-    input:focus {
-      background: rgba(255, 255, 255, 0.9);
-      border-color: #ff4081;
-      box-shadow: 0 0 12px rgba(255, 64, 129, 0.3);
-    }
-
-    /* Buttons */
-    .btn-submit {
+    .btn-submit, .btn-cake, .action-btn {
       width: 100%;
       padding: 12px;
       border-radius: 30px;
@@ -129,93 +107,164 @@
       box-shadow: 0 6px 18px rgba(255, 64, 129, 0.35);
       transition: all 0.3s ease;
     }
-    .btn-submit:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 22px rgba(255, 64, 129, 0.5);
-    }
 
-    .error-msg {
-      color: #d32f2f;
-      font-size: 0.85rem;
-      margin-top: 12px;
-      display: none;
-      font-weight: 500;
-    }
-    .shake {
-      animation: shake 0.4s ease-in-out;
-    }
+    .error-msg { color: #d32f2f; font-size: 0.85rem; margin-top: 12px; display: none; }
+    .shake { animation: shake 0.4s ease-in-out; }
     @keyframes shake {
       0%, 100% { transform: translateX(0); }
       20%, 60% { transform: translateX(-10px); }
       40%, 80% { transform: translateX(10px); }
     }
 
-    /* Screen 2 Styles */
-    #screen2, #screen3 {
-      display: none;
-    }
+    #screen2, #screen3, #screen4 { display: none; }
+
+    /* Screen 2 Buttons */
     .btn-group {
+      display: flex; justifyContent: center; align-items: center;
+      gap: 20px; margin-top: 25px; height: 70px; position: relative;
+    }
+    .btn-yes {
+      padding: 10px 28px; border-radius: 30px; border: none;
+      background: linear-gradient(45deg, #2ecc71, #27ae60);
+      color: white; font-size: 1rem; font-weight: 600; cursor: pointer;
+    }
+    .btn-no {
+      padding: 10px 28px; border-radius: 30px; border: none;
+      background: linear-gradient(45deg, #e74c3c, #c0392b);
+      color: white; font-size: 1rem; font-weight: 600; cursor: pointer;
+      position: absolute; transition: all 0.2s ease-out;
+    }
+
+    /* Screen 4: Cake Ceremony Styles */
+    .cake-container {
+      position: relative;
+      margin: 30px auto;
+      width: 200px;
+      height: 180px;
+      cursor: pointer;
+    }
+
+    /* Candle Styling */
+    .candles {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      z-index: 5;
+    }
+    .candle {
+      width: 10px;
+      height: 35px;
+      background: linear-gradient(to bottom, #ffeb3b, #ff9800);
+      border-radius: 4px;
+      position: relative;
+    }
+    .flame {
+      width: 12px;
+      height: 18px;
+      background: #ff5722;
+      border-radius: 50% 50% 20% 20%;
+      position: absolute;
+      top: -18px;
+      left: -1px;
+      box-shadow: 0 0 10px #ffeb3b, 0 0 20px #ff5722;
+      animation: flicker 0.6s infinite alternate;
+    }
+    @keyframes flicker {
+      0% { transform: scale(1); opacity: 0.9; }
+      100% { transform: scale(1.15); opacity: 1; }
+    }
+    .flame.off { display: none; }
+
+    /* Cake Styling */
+    .cake {
+      width: 180px;
+      height: 110px;
+      background: #f8bbd0;
+      border-radius: 16px 16px 10px 10px;
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      box-shadow: 0 8px 0 #e91e63, 0 16px 0 #880e4f;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 20px;
-      margin-top: 25px;
-      height: 70px;
-      position: relative;
+      transition: all 0.5s ease;
+      overflow: hidden;
     }
-    .btn-yes {
-      padding: 10px 28px;
-      border-radius: 30px;
-      border: none;
-      background: linear-gradient(45deg, #2ecc71, #27ae60);
-      color: white;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 6px 18px rgba(46, 204, 113, 0.35);
-      transition: transform 0.2s ease;
+    .cake-decor {
+      font-size: 2.5rem;
     }
-    .btn-yes:hover {
-      transform: scale(1.08);
+    .cake.cut-left {
+      transform: translateX(-20px) rotate(-5deg);
     }
-    .btn-no {
-      padding: 10px 28px;
-      border-radius: 30px;
-      border: none;
-      background: linear-gradient(45deg, #e74c3c, #c0392b);
-      color: white;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 6px 18px rgba(231, 76, 60, 0.35);
-      position: absolute;
-      transition: all 0.2s ease-out;
+    .cake.cut-right {
+      transform: translateX(20px) rotate(5deg);
     }
 
-    /* Screen 3 Styles */
-    .wish-text {
-      font-size: 1rem;
-      color: #4a154b;
-      line-height: 1.6;
-      margin-bottom: 25px;
-      font-weight: 400;
+    /* Knife Overlay */
+    .knife {
+      position: absolute;
+      top: -20px;
+      right: 10px;
+      font-size: 3rem;
+      transform: rotate(-45deg);
+      transition: all 0.5s ease;
+      opacity: 0;
+      z-index: 20;
+      pointer-events: none;
     }
-    .btn-cake {
-      width: 100%;
-      padding: 14px;
-      border-radius: 30px;
-      border: none;
-      background: linear-gradient(45deg, #ff007f, #ff758c);
-      color: white;
-      font-size: 1.1rem;
-      font-weight: 600;
+    .knife.active { opacity: 1; }
+    .knife.cutting {
+      top: 60px;
+      right: 80px;
+      transform: rotate(10deg);
+    }
+
+    /* Chocolate Rain Particle */
+    .choc-particle {
+      position: fixed;
+      font-size: 2rem;
+      z-index: 1000;
+      pointer-events: none;
+      animation: chocFall 3s linear forwards;
+    }
+    @keyframes chocFall {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0.8; }
+    }
+
+    /* 4 Surprise Options Grid */
+    .surprises-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 25px;
+      display: none;
+      animation: fadeIn 1s ease-in;
+    }
+    .surprise-box {
+      background: rgba(255, 255, 255, 0.7);
+      border: 2px dashed #ff4081;
+      padding: 15px 10px;
+      border-radius: 16px;
       cursor: pointer;
-      box-shadow: 0 6px 20px rgba(255, 0, 127, 0.4);
       transition: all 0.3s ease;
+      font-weight: 600;
+      color: #d81b60;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
-    .btn-cake:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(255, 0, 127, 0.6);
+    .surprise-box:hover {
+      transform: translateY(-50px) scale(1.05);
+      background: #fff;
+      box-shadow: 0 8px 20px rgba(255, 64, 129, 0.3);
+    }
+    .surprise-box span {
+      display: block;
+      font-size: 1.8rem;
+      margin-bottom: 5px;
     }
   </style>
 </head>
@@ -225,17 +274,14 @@
   <div class="particle" style="width: 20px; height: 20px; left: 10%; animation-duration: 7s;"></div>
   <div class="particle" style="width: 15px; height: 15px; left: 30%; animation-duration: 9s;"></div>
   <div class="particle" style="width: 25px; height: 25px; left: 60%; animation-duration: 6s;"></div>
-  <div class="particle" style="width: 12px; height: 12px; left: 80%; animation-duration: 8s;"></div>
 
   <!-- SCREEN 1: Password Page -->
   <div class="card" id="screen1">
     <h1>Hey Bestie! ✨</h1>
     <p class="question">Tum mujhe janti ho? 💖</p>
-    
     <div class="input-group">
       <input type="password" id="passInput" placeholder="Meri bestie ka naam (jisse main bulaata hoon)">
     </div>
-    
     <button class="btn-submit" onclick="checkPassword()">Enter ❤️</button>
     <p class="error-msg" id="errorMsg">Galat password! Dobara try karo 🙈</p>
   </div>
@@ -244,14 +290,13 @@
   <div class="card" id="screen2">
     <h1>Ek Chota Sa Sawal 🥺</h1>
     <p class="question">Kya tum meri bestie ban kr raho gi hamesha? 💖</p>
-    
     <div class="btn-group" id="btnGroup">
       <button class="btn-yes" onclick="handleYesClick()">Haan, Hamesha! 💕</button>
       <button class="btn-no" id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()" ontouchstart="moveNoButton()">Nahi 😜</button>
     </div>
   </div>
 
-  <!-- SCREEN 3: Birthday Wish Page -->
+  <!-- SCREEN 3: Wish Page -->
   <div class="card" id="screen3">
     <h1>Happy Birthday! 🎂✨</h1>
     <p class="wish-text">
@@ -261,68 +306,159 @@
     <button class="btn-cake" onclick="goToCakeScreen()">Cut The Cake 🎂✨</button>
   </div>
 
+  <!-- SCREEN 4: Cake Cutting & Chocolates & 4 Surprises -->
+  <div class="card" id="screen4">
+    <h1 id="cakeTitle">Blow Candles First! 🌬️</h1>
+    <p class="wish-text" id="cakeInstruction">Candles par click ya button daba kar pehle unhe bujhaayein!</p>
+
+    <div class="cake-container" id="cakeContainer" onclick="handleCakeClick()">
+      <div class="knife" id="knife">🔪</div>
+      <div class="candles">
+        <div class="candle"><div class="flame" id="flame1"></div></div>
+        <div class="candle"><div class="flame" id="flame2"></div></div>
+        <div class="candle"><div class="flame" id="flame3"></div></div>
+      </div>
+      <div class="cake" id="cake">
+        <span class="cake-decor">🍓🎂🍓</span>
+      </div>
+    </div>
+
+    <button class="action-btn" id="blowBtn" onclick="blowCandles()">Blow Candles 🌬️</button>
+
+    <!-- 4 Surprise Options (Cake Cut hone ke baad aayenge) -->
+    <div class="surprises-grid" id="surprisesGrid">
+      <div class="surprise-box" onclick="openSurprise(1)">
+        <span>📜</span>
+        Shayari
+      </div>
+      <div class="surprise-box" onclick="openSurprise(2)">
+        <span>📸</span>
+        Our Photos
+      </div>
+      <div class="surprise-box" onclick="openSurprise(3)">
+        <span>🎫</span>
+        Special Wishes
+      </div>
+      <div class="surprise-box" onclick="openSurprise(4)">
+        <span>🎵</span>
+        Favorite Song
+      </div>
+    </div>
+  </div>
+
   <script>
-    // Screen 1: Password Validation
+    // Screen 1: Password Check
     function checkPassword() {
       const input = document.getElementById('passInput').value;
-      const card1 = document.getElementById('screen1');
-      const errorMsg = document.getElementById('errorMsg');
-
       if (input === 'Pythone') {
-        errorMsg.style.display = 'none';
-        card1.style.display = 'none';
+        document.getElementById('screen1').style.display = 'none';
         document.getElementById('screen2').style.display = 'block';
         resetNoButtonPosition();
       } else {
+        const errorMsg = document.getElementById('errorMsg');
         errorMsg.style.display = 'block';
-        card1.classList.add('shake');
-        setTimeout(() => {
-          card1.classList.remove('shake');
-        }, 400);
+        document.getElementById('screen1').classList.add('shake');
+        setTimeout(() => document.getElementById('screen1').classList.remove('shake'), 400);
       }
     }
 
-    document.getElementById('passInput').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        checkPassword();
-      }
+    document.getElementById('passInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') checkPassword();
     });
 
-    // Screen 2: Safe Inside-Card Dodging "No" Button Logic
+    // Screen 2: Dodging No Button
     const noBtn = document.getElementById('noBtn');
-
     function resetNoButtonPosition() {
       noBtn.style.position = 'absolute';
       noBtn.style.right = '20px';
       noBtn.style.top = '50%';
       noBtn.style.transform = 'translateY(-50%)';
     }
-
     function moveNoButton() {
       const randomX = Math.floor(Math.random() * 180) - 90;
       const randomY = Math.floor(Math.random() * 80) - 40;
-      
       noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
     }
 
-    // Handle "Yes" Button Click -> Transition to Screen 3
     function handleYesClick() {
-      confetti({
-        particleCount: 120,
-        spread: 80,
-        origin: { y: 0.6 }
-      });
-      
+      confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
       setTimeout(() => {
         document.getElementById('screen2').style.display = 'none';
         document.getElementById('screen3').style.display = 'block';
       }, 400);
     }
 
-    // Screen 3 -> Transition to Screen 4 (Cake Ceremony)
+    // Screen 3 -> Screen 4
     function goToCakeScreen() {
-      alert("Agli screen me Cake Cutting Ceremony interactive hogi! 🎉🎂");
-      // Screen 4 ka code next step me yahan connect hoga!
+      document.getElementById('screen3').style.display = 'none';
+      document.getElementById('screen4').style.display = 'block';
+    }
+
+    // Screen 4: Cake Logic
+    let candlesBlown = false;
+    let cakeCut = false;
+
+    function blowCandles() {
+      if (candlesBlown) return;
+      candlesBlown = true;
+      document.getElementById('flame1').classList.add('off');
+      document.getElementById('flame2').classList.add('off');
+      document.getElementById('flame3').classList.add('off');
+
+      document.getElementById('cakeTitle').innerText = "Now Cut The Cake! 🔪";
+      document.getElementById('cakeInstruction').innerText = "Cake par click karke cut karein!";
+      document.getElementById('blowBtn').style.display = 'none';
+      document.getElementById('knife').classList.add('active');
+
+      confetti({ particleCount: 80, spread: 60 });
+    }
+
+    function handleCakeClick() {
+      if (!candlesBlown) {
+        blowCandles();
+        return;
+      }
+      if (cakeCut) return;
+
+      cakeCut = true;
+      const knife = document.getElementById('knife');
+      const cake = document.getElementById('cake');
+
+      knife.classList.add('cutting');
+
+      setTimeout(() => {
+        cake.classList.add('cut-left');
+        document.getElementById('cakeTitle').innerText = "Yummy! Surprise Unlocked! 🍫✨";
+        document.getElementById('cakeInstruction').innerText = "Niche se koi bhi ek surprise box select karo:";
+        knife.style.display = 'none';
+
+        // Trigger Chocolates Shower & Show Surprises
+        startChocolateShower();
+        document.getElementById('surprisesGrid').style.display = 'grid';
+      }, 500);
+    }
+
+    // Chocolate & Dairy Milk Shower
+    function startChocolateShower() {
+      const items = ['🍫', '🍬', '🍩', '🍫', '🎂', '🍭'];
+      for (let i = 0; i < 35; i++) {
+        setTimeout(() => {
+          const el = document.createElement('div');
+          el.className = 'choc-particle';
+          el.innerText = items[Math.floor(Math.random() * items.length)];
+          el.style.left = Math.random() * 90 + 5 + 'vw';
+          document.body.appendChild(el);
+          setTimeout(() => el.remove(), 3000);
+        }, i * 100);
+      }
+    }
+
+    // Handle 4 Mystery Surprises
+    function openSurprise(num) {
+      if (num === 1) alert("Screen 5 (Shayari) next step me add karenge! 📜");
+      if (num === 2) alert("Screen 6 (Photos) next step me add karenge! 📸");
+      if (num === 3) alert("Screen 7 (Wishes/Coupons) next step me add karenge! 🎫");
+      if (num === 4) alert("Screen 8 (Favorite Song) next step me add karenge! 🎵");
     }
   </script>
 </body>
