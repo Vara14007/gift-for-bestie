@@ -21,7 +21,7 @@
       background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #a1c4fd 100%);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
-      overflow: hidden;
+      overflow-x: hidden;
       position: relative;
       padding: 20px;
     }
@@ -63,7 +63,7 @@
       border-radius: 24px;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
       width: 100%;
-      max-width: 420px;
+      max-width: 440px;
       text-align: center;
       z-index: 10;
       animation: fadeIn 0.8s ease-out;
@@ -76,7 +76,7 @@
 
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       color: #d81b60;
       margin-bottom: 10px;
       text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
@@ -151,7 +151,7 @@
     }
 
     /* Screen 2 Styles */
-    #screen2 {
+    #screen2, #screen3 {
       display: none;
     }
     .btn-group {
@@ -191,6 +191,32 @@
       position: absolute;
       transition: all 0.2s ease-out;
     }
+
+    /* Screen 3 Styles */
+    .wish-text {
+      font-size: 1rem;
+      color: #4a154b;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      font-weight: 400;
+    }
+    .btn-cake {
+      width: 100%;
+      padding: 14px;
+      border-radius: 30px;
+      border: none;
+      background: linear-gradient(45deg, #ff007f, #ff758c);
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(255, 0, 127, 0.4);
+      transition: all 0.3s ease;
+    }
+    .btn-cake:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(255, 0, 127, 0.6);
+    }
   </style>
 </head>
 <body>
@@ -211,7 +237,7 @@
     </div>
     
     <button class="btn-submit" onclick="checkPassword()">Enter ❤️</button>
-    <p class="error-msg" id="errorMsg">Galat password! Dobara try karo ŷ</p>
+    <p class="error-msg" id="errorMsg">Galat password! Dobara try karo 🙈</p>
   </div>
 
   <!-- SCREEN 2: Question Page -->
@@ -223,6 +249,16 @@
       <button class="btn-yes" onclick="handleYesClick()">Haan, Hamesha! 💕</button>
       <button class="btn-no" id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()" ontouchstart="moveNoButton()">Nahi 😜</button>
     </div>
+  </div>
+
+  <!-- SCREEN 3: Birthday Wish Page -->
+  <div class="card" id="screen3">
+    <h1>Happy Birthday! 🎂✨</h1>
+    <p class="wish-text">
+      Aaj tumhara birthday hai aur mere paas tumhare liye ek chota sa pyaara sa surprise hai! 
+      Tum meri sabse achi bestie ho aur tumhari smile hamesha aisi hi chamakti rahe! 🥳💖
+    </p>
+    <button class="btn-cake" onclick="goToCakeScreen()">Cut The Cake 🎂✨</button>
   </div>
 
   <script>
@@ -263,24 +299,30 @@
     }
 
     function moveNoButton() {
-      // Card ke andar hi random safe positions define kar dete hain taki kabhi bahar na jaye
       const randomX = Math.floor(Math.random() * 180) - 90;
       const randomY = Math.floor(Math.random() * 80) - 40;
       
       noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
     }
 
-    // Handle "Yes" Button Click
+    // Handle "Yes" Button Click -> Transition to Screen 3
     function handleYesClick() {
       confetti({
-        particleCount: 100,
-        spread: 70,
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.6 }
       });
       
       setTimeout(() => {
-        alert("Yayee! Besties Forever! 🎉💖");
-        // Agla step yahan add karenge!
-      }, 500);
+        document.getElementById('screen2').style.display = 'none';
+        document.getElementById('screen3').style.display = 'block';
+      }, 400);
+    }
+
+    // Screen 3 -> Transition to Screen 4 (Cake Ceremony)
+    function goToCakeScreen() {
+      alert("Agli screen me Cake Cutting Ceremony interactive hogi! 🎉🎂");
+      // Screen 4 ka code next step me yahan connect hoga!
     }
   </script>
 </body>
