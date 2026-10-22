@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Special Surprise 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #a1c4fd 100%);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      overflow: hidden;
+      position: relative;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    /* Ambient Floating Particles */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      animation: floatUp 8s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 40px 30px;
+      border-radius: 24px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 420px;
+      text-align: center;
+      z-index: 10;
+      animation: fadeIn 1s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      color: #d81b60;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
+    }
+    p.question {
+      font-size: 1.2rem;
+      color: #4a154b;
+      margin-bottom: 25px;
+      font-weight: 500;
+    }
+    .input-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+    input[type="password"], input[type="text"] {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 30px;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.6);
+      outline: none;
+      font-size: 1rem;
+      text-align: center;
+      color: #333;
+      transition: all 0.3s ease;
+    }
+    input::placeholder {
+      color: #777;
+      font-size: 0.88rem;
+    }
+    input:focus {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: #ff4081;
+      box-shadow: 0 0 12px rgba(255, 64, 129, 0.3);
+    }
+    button.btn-submit {
+      width: 100%;
+      padding: 14px;
+      border-radius: 30px;
+      border: none;
+      background: linear-gradient(45deg, #ff4081, #ff70a6);
+      color: white;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(255, 64, 129, 0.35);
+      transition: all 0.3s ease;
+    }
+    button.btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(255, 64, 129, 0.5);
+    }
+    .error-msg {
+      color: #d32f2f;
+      font-size: 0.88rem;
+      margin-top: 12px;
+      display: none;
+      font-weight: 500;
+    }
+    .shake {
+      animation: shake 0.4s ease-in-out;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-10px); }
+      40%, 80% { transform: translateX(10px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating particles -->
+  <div class="particle" style="width: 20px; height: 20px; left: 10%; animation-duration: 7s;"></div>
+  <div class="particle" style="width: 15px; height: 15px; left: 30%; animation-duration: 9s;"></div>
+  <div class="particle" style="width: 25px; height: 25px; left: 60%; animation-duration: 6s;"></div>
+  <div class="particle" style="width: 12px; height: 12px; left: 80%; animation-duration: 8s;"></div>
+
+  <div class="card" id="mainCard">
+    <h1>Hey Bestie! ✨</h1>
+    <p class="question">Tum mujhe janti ho? 💖</p>
+    
+    <div class="input-group">
+      <input type="password" id="passInput" placeholder="Meri bestie ka naam (jisse main bulaata hoon)">
+    </div>
+    
+    <button class="btn-submit" onclick="checkPassword()">Enter ❤️</button>
+    
+    <p class="error-msg" id="errorMsg">Galat password! Dobara try karo 🙈</p>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById('passInput').value;
+      const card = document.getElementById('mainCard');
+      const errorMsg = document.getElementById('errorMsg');
+
+      if (input === 'Pythone') {
+        errorMsg.style.display = 'none';
+        alert('Correct Password! 🎉');
+        // Agle step ke liye Screen 2 transition yahan add karenge!
+      } else {
+        errorMsg.style.display = 'block';
+        card.classList.add('shake');
+        setTimeout(() => {
+          card.classList.remove('shake');
+        }, 400);
+      }
+    }
+
+    // Press Enter to submit
+    document.getElementById('passInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        checkPassword();
+      }
+    });
+  </script>
+</body>
+</html>
