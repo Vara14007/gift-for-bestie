@@ -135,30 +135,30 @@
       position: absolute; transition: all 0.2s ease-out;
     }
 
-    /* Cute Cat Strawberry Cheesecake Wrapper */
+    /* Original Cake Image Wrapper */
     .cake-wrapper {
       position: relative;
-      width: 240px;
-      height: 220px;
+      width: 260px;
+      height: 260px;
       margin: 15px auto;
       cursor: pointer;
     }
-    .cat-cake-img {
+    .cake-img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      filter: drop-shadow(0 10px 18px rgba(216, 27, 96, 0.22));
+      filter: drop-shadow(0 10px 20px rgba(216, 27, 96, 0.22));
       transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .cat-cake-img.cut {
+    .cake-img.cut {
       transform: scale(1.08) rotate(3deg);
-      filter: drop-shadow(0 15px 28px rgba(255, 64, 129, 0.45));
+      filter: drop-shadow(0 15px 30px rgba(255, 64, 129, 0.45));
     }
 
     .knife-icon {
       position: absolute;
-      top: 5px;
-      right: 10px;
+      top: 10px;
+      right: 15px;
       font-size: 3.5rem;
       transform: rotate(-40deg);
       transition: all 0.5s ease;
@@ -167,8 +167,8 @@
       filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.25));
     }
     .knife-icon.cutting {
-      top: 100px;
-      right: 90px;
+      top: 110px;
+      right: 100px;
       transform: rotate(15deg) scale(1.25);
     }
 
@@ -290,18 +290,18 @@
     <button class="btn-cake" onclick="goToCakeScreen()">Cut The Cake 🎂✨</button>
   </div>
 
-  <!-- SCREEN 4: Cat Cheesecake Sticker & Chocolates & Shuffled Surprises -->
+  <!-- SCREEN 4: Original Sticker Cake & Chocolates & Shuffled Surprises -->
   <div class="card" id="screen4">
     <h1 id="cakeTitle">Cut The Birthday Cake! 🔪✨</h1>
-    <p class="wish-text" id="cakeInstruction">Cheesecake par click karke cake cut karein!</p>
+    <p class="wish-text" id="cakeInstruction">Cake par click karke cake cut karein!</p>
 
-    <div class="cake-wrapper" onclick="cutCatCake()">
+    <div class="cake-wrapper" onclick="cutCake()">
       <div class="knife-icon" id="knife">🔪</div>
-      <!-- Embedded Cute Cat Strawberry Cheesecake Sticker -->
-      <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'><path d='M250,50 C130,50 50,150 50,280 C50,400 130,450 250,450 C370,450 450,400 450,280 C450,150 370,50 250,50 Z' fill='none' stroke='%23f5f5f5' stroke-width='25' stroke-linejoin='round'/><g transform='translate(70, 70)'><path d='M100 200 C80 200 60 180 50 160 C30 180 10 160 20 130 C30 100 60 70 100 80 C110 50 140 40 170 60 C190 70 200 90 195 110 C210 120 220 140 210 170 C200 190 180 200 160 200 Z' fill='%23ffffff' stroke='%234a2e2b' stroke-width='6'/><path d='M65 110 Q80 80 105 105 Q125 70 145 105 Q170 85 175 115 Z' fill='%23d32f2f'/><circle cx='85' cy='95' r='2' fill='%23ffffff'/><circle cx='125' cy='90' r='2' fill='%23ffffff'/><circle cx='155' cy='100' r='2' fill='%23ffffff'/><ellipse cx='110' cy='140' rx='5' ry='8' fill='%2329b6f6'/><ellipse cx='150' cy='140' rx='5' ry='8' fill='%2329b6f6'/><path d='M125 150 Q130 155 135 150' stroke='%234a2e2b' stroke-width='4' fill='none'/><path d='M40 260 C30 330 40 380 230 410 C380 430 430 350 420 270 C410 200 300 220 230 220 C140 220 50 210 40 260 Z' fill='%23ffe082' stroke='%234a2e2b' stroke-width='7'/><path d='M40 260 C40 330 60 380 230 410 C380 430 430 350 420 270 L420 230 C350 230 280 240 230 240 C140 240 40 210 40 260 Z' fill='%23fff9c4'/><path d='M45 375 C100 415 250 425 415 350 L415 365 C250 440 100 430 45 390 Z' fill='%23ffb74d'/><path d='M50 250 Q120 280 210 270 Q280 260 350 300 Q400 320 420 250 C380 170 280 210 220 210 C150 210 70 200 50 250 Z' fill='%23e53935'/><path d='M280 270 L400 280 L350 380 Z' fill='%23ffffff' opacity='0.9'/><path d='M290 275 L390 285 L350 370 Z' fill='%23fff9c4'/><path d='M285 270 Q340 280 395 285 L350 380 Z' stroke='%234a2e2b' stroke-width='6' fill='none'/><circle cx='150' cy='240' r='30' fill='%23e53935'/><circle cx='230' cy='210' r='38' fill='%23e53935'/><circle cx='310' cy='230' r='32' fill='%23e53935'/><circle cx='370' cy='260' r='28' fill='%23e53935'/><path d='M170 280 Q190 310 240 290 Q290 270 300 320 Q310 360 350 320' fill='%23d32f2f'/></g></svg>" class="cat-cake-img" id="catCakeImg" alt="Cute Cat Strawberry Cheesecake">
+      <!-- Embedded Original 3-Tier Birthday Cake Sticker -->
+      <img src="https://i.ibb.co/6P6X9X5/Sweeten-birthdays-The-perfect-cake-sticker.jpg" class="cake-img" id="cakeImg" alt="3 Tier Birthday Cake">
     </div>
 
-    <button class="action-btn" id="cutBtn" onclick="cutCatCake()">Cut The Cake 🎂✨</button>
+    <button class="action-btn" id="cutBtn" onclick="cutCake()">Cut The Cake 🎂✨</button>
 
     <!-- 4 Mystery Surprise Cards (Shuffled each time) -->
     <div class="surprises-grid" id="surprisesGrid"></div>
@@ -364,26 +364,26 @@
       document.getElementById('screen4').style.display = 'block';
     }
 
-    // Screen 4: Cat Cheesecake Cut Action
+    // Screen 4: Cake Cut Action
     let cakeCut = false;
 
-    function cutCatCake() {
+    function cutCake() {
       if (cakeCut) return;
       cakeCut = true;
 
       const knife = document.getElementById('knife');
-      const catCakeImg = document.getElementById('catCakeImg');
+      const cakeImg = document.getElementById('cakeImg');
 
       knife.classList.add('cutting');
 
       setTimeout(() => {
-        catCakeImg.classList.add('cut');
-        document.getElementById('cakeTitle').innerText = "Yummy! Surprises Unlocked! 🍓✨";
+        cakeImg.classList.add('cut');
+        document.getElementById('cakeTitle').innerText = "Yummy! Surprises Unlocked! 🍫✨";
         document.getElementById('cakeInstruction').innerText = "Koi bhi Surprise Card select karke unlock karein:";
         document.getElementById('cutBtn').style.display = 'none';
         knife.style.display = 'none';
 
-        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
         startChocolateShower();
         renderShuffledSurprises();
       }, 500);
@@ -391,7 +391,7 @@
 
     // Chocolate & Dairy Milk Rain
     function startChocolateShower() {
-      const items = ['🍫', '🍬', '🍩', '🍫', '🎂', '🍓', '🍭'];
+      const items = ['🍫', '🍬', '🍩', '🍫', '🎂', '🍭', '🍓'];
       for (let i = 0; i < 40; i++) {
         setTimeout(() => {
           const el = document.createElement('div');
@@ -407,7 +407,7 @@
     // Surprise Data Definition
     const surprises = [
       { id: 1, title: "Special Shayari 📜", content: "Phoolo ne amrit ka jam bheja hai,<br>Suraj ne gagan se salam bheja hai,<br>Mubarak ho aapko aapka janamdin,<br>Ye paigam humne dil se bheja hai! ❤️✨" },
-      { id: 2, title: "Our Best Memories 📸", content: "Hamarim saari memories hamesha special rahengi! Tum meri life ki sabse achi dost ho! 💕✨" },
+      { id: 2, title: "Our Best Memories 📸", content: "Hamari saari memories hamesha special rahengi! Tum meri life ki sabse achi dost ho! 💕✨" },
       { id: 3, title: "Bestie Voucher 🎫", content: "🎉 <b>UNLIMITED HUGS & TREATS VOUCHER</b> 🎉<br><br>Valid for a lifetime! In-person redeem kar sakti ho kabhi bhi! 🍕🍦" },
       { id: 4, title: "Favorite Musical Song 🎵", content: "🎶 <i>'Yeh Dosti Hum Nahi Todenge...'</i> 🎶<br><br>Hamesha aise hi muskuraate rehna meri Bestie! 💖" }
     ];
